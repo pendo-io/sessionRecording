@@ -66,8 +66,8 @@ class BaseElement {
             this.element.style.borderWidth = this.json.borderWidth  + 'px';
             this.element.style.borderColor = "#" + (this.json.borderColor || "000000");
         }
-        if(this.json.cornerRadius) {
-            this.element.style.cornerRadius = this.json.cornerRadius + 'px';
+        if(this.json.cornerRadius && this.json.cornerRadius > 0) {
+            this.element.style.borderRadius = this.json.cornerRadius + 'px';
         }
     }
 
