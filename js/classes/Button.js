@@ -6,11 +6,8 @@ class Button extends BaseElement {
 
   createElement() {
       this.element = document.createElement('div');
-      this.element.style.display = 'flex';
-      if(this.json.text) {
-          this.element.innerText = this.json.text;
-      }
+      super.createElement();
+      // this.element.style.display = 'flex';
       this.element.style.cursor = 'pointer'
-      return super.createElement();
   }
 }

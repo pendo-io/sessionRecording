@@ -16,6 +16,12 @@ const createLabel = (lbl) => {
     return label.getElement();
 }
 
+const createImage = (img) => {
+    const image = new Image(img);
+    image.createElement();
+    return image.getElement();
+}
+
 const parseAndBuild = (viewsArray, container, zIndex = 900) => {
     if (viewsArray == null || viewsArray.length === 0) {
         return;
@@ -39,6 +45,9 @@ const parseAndBuild = (viewsArray, container, zIndex = 900) => {
                     case ViewTypes.UILabel:
                         child = createLabel(view);
                         break;
+                    case ViewTypes.UIImageView:
+                        child = createImage(view);
+                        break;
                     case ViewTypes.UIViewControllerWrapperView:
                     case ViewTypes.UILayoutContainerView:
                     case ViewTypes.UINavigationTransitionView:
@@ -48,7 +57,10 @@ const parseAndBuild = (viewsArray, container, zIndex = 900) => {
                         break;
                 }
                 child.style.zIndex = zIndex++;
-                // container.appendChild(child);
+                // UIButton
+                if(container !== mainContent) {
+                    child.style.position = 'unset';
+                }
                 let newContainer = null;
                 if (view.type === ViewTypes.UIButton) {
                     // container = child; //UIButton.

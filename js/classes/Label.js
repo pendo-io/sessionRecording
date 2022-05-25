@@ -7,13 +7,8 @@ class Label extends BaseElement {
   createElement() {
       this.element = document.createElement('span');
       super.createElement();
-      this.element.style.display = 'flex';
-      this.element.style.position = 'unset';
-      this.element.style.flex = "1";
-      if(this.json.text) {
-          this.element.innerText = this.json.text;
-      }
+      // this.element.style.display = 'flex';
+      this.element.style.flex = '1';
       this.element.style.backgroundColor = null;
-
   }
 }

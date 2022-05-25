@@ -15,6 +15,7 @@ class BaseElement {
         if (this.json.text){
             this.element.innerText = this.json.text;
         }
+        this.element.style.display = 'flex'
         return this.element;
     }
 

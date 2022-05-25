@@ -5,6 +5,7 @@ const ViewTypes = {
     UINavigationTransitionView: 'UINavigationTransitionView',
     UIViewControllerWrapperView: 'UIViewControllerWrapperView',
     UIView: 'UIView',
+    UIImageView: "UIImageView"
 }
 
-const ViewTypesToIgnore = ["_UIBackButtonMaskView","_UISystemBackgroundView", "_UIBarBackgroundShadowContentImageView" ];
+const ViewTypesToIgnore = ["_UIBackButtonMaskView","_UISystemBackgroundView", "_UIBarBackgroundShadowContentImageView" ,"_UIVisualEffectBackdropView"];
