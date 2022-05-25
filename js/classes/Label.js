@@ -6,7 +6,10 @@ class Label extends BaseElement {
 
   createElement() {
       this.element = document.createElement('span');
-      this.element.innerText = this.json.text;
+      this.element.style.display = 'flex';
+      if(this.json.text) {
+          this.element.innerText = this.json.text;
+      }
       return super.createElement();
   }
 }

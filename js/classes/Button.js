@@ -5,8 +5,12 @@ class Button extends BaseElement {
   }
 
   createElement() {
-      this.element = document.createElement('button');
-      this.element.innerText = this.json.text;
+      this.element = document.createElement('span');
+      this.element.style.display = 'flex';
+      if(this.json.text) {
+          this.element.innerText = this.json.text;
+      }
+      this.element.style.cursor = 'pointer'
       return super.createElement();
   }
 }
