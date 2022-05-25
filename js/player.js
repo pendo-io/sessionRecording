@@ -1,4 +1,5 @@
 let mainContent;
+let sizeFactor = 0.8;
 const createMainContent = () => {
     const container = document.getElementById('container');
     if (container !== null) {
@@ -14,12 +15,13 @@ const createMainContent = () => {
         mainContent.style.overflow = 'hidden';
         mainContent.style.width = '312px';
         mainContent.style.height = '675.2px';
-        mainContent.style.top = '60px';
+        mainContent.style.top = '80px';
 
         container.appendChild(mainContent);
 
         //PARSE AND BUILD
-        parseAndBuild(json1, mainContent)
+        play(eventsData);
+        // parseAndBuild(json1, mainContent)
     }
 }
 
