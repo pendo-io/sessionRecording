@@ -1,4 +1,4 @@
-class Div extends BaseElement {
+class View extends BaseElement {
     constructor(json) {
         super(json);
     }

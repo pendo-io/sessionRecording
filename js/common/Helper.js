@@ -4,10 +4,16 @@ const createButton = (btnJson) => {
     return btn.getElement();
 }
 
-const createDiv = (divJson) => {
-    const div = new Div(divJson);
+const createView = (divJson) => {
+    const div = new View(divJson);
     div.createElement();
     return div.getElement();
+}
+
+const createLabel = (labelJson) => {
+    const label = new Label(labelJson);
+    label.createElement();
+    return label.getElement();
 }
 
 const parseAndBuild = (viewsArray) => {
@@ -15,27 +21,35 @@ const parseAndBuild = (viewsArray) => {
         return;
     } else {
         viewsArray.forEach(view => {
+            delete view.superClass;
+            console.warn(view.type);
+            console.warn(view);
             // do something with element
             // types that need special handling
             // types that should be ignored
             // types that require merging
-            switch (view.type) {
-                case ViewTypes.UIButton:
-                    const btn = createButton(view);
-                    mainContent.appendChild(btn);
-                    break;
-                case ViewTypes.UILabel:
-
-                    break;
-                case ViewTypes.UIViewControllerWrapperView:
-                case ViewTypes.UILayoutContainerView:
-                case ViewTypes.UINavigationTransitionView:
-                case ViewTypes.UIView:
-                default:
-                    const defaultDiv = createDiv(view);
-                    mainContent.appendChild(defaultDiv);
+            if (view.type.startsWith('_')) {
+                parseAndBuild(view.views);
+            } else {
+                switch (view.type) {
+                    case ViewTypes.UIButton:
+                        const btn = createButton(view);
+                        mainContent.appendChild(btn);
+                        break;
+                    case ViewTypes.UILabel:
+                        const label = createLabel(view);
+                        mainContent.appendChild(label);
+                        break;
+                    case ViewTypes.UIViewControllerWrapperView:
+                    case ViewTypes.UILayoutContainerView:
+                    case ViewTypes.UINavigationTransitionView:
+                    case ViewTypes.UIView:
+                    default:
+                        const defaultDiv = createView(view);
+                        mainContent.appendChild(defaultDiv);
+                }
+                parseAndBuild(view.views);
             }
-            parseAndBuild(view.views);
         });
     }
 }
