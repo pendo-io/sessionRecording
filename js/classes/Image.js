@@ -7,7 +7,9 @@ class Image extends BaseElement {
   createElement() {
       this.element = document.createElement('img');
       super.createElement();
-      console.warn(this.json.image);
+
+      this.element.style.marginLeft = '0px';
+      this.element.style.marginRight = '0px';
       this.element.src = "data:image/png;base64, " + this.json.image;
   }
 }

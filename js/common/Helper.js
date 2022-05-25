@@ -34,12 +34,11 @@ const parseAndBuild = (viewsArray, container, zIndex = 900) => {
             // types that require merging
             if (ViewTypesToIgnore.includes(view.type)) {
                 // parseAndBuild(view.views, container, zIndex);
-            } else if (view.frame && view.frame.width === 0 || view.frame.height === 0) {
-                parseAndBuild(view.views, container);
-            } else {
+            }else {
                 let child;
                 switch (view.type) {
                     case ViewTypes.UIButton:
+                    case ViewTypes.UIButtonLabel:
                         child = createButton(view);
                         break;
                     case ViewTypes.UILabel:
@@ -56,12 +55,12 @@ const parseAndBuild = (viewsArray, container, zIndex = 900) => {
                         child = createView(view);
                         break;
                 }
-                child.style.zIndex = zIndex++;
+                child.style.zIndex = zIndex++ + '';
                 // UIButton
                 if(container !== mainContent) {
                     child.style.position = 'unset';
                 }
-                let newContainer = null;
+                let newContainer;
                 if (view.type === ViewTypes.UIButton) {
                     // container = child; //UIButton.
                     newContainer = child;

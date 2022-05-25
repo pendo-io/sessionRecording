@@ -7,7 +7,6 @@ class Button extends BaseElement {
   createElement() {
       this.element = document.createElement('div');
       super.createElement();
-      // this.element.style.display = 'flex';
       this.element.style.cursor = 'pointer'
   }
 }

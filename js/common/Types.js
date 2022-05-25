@@ -1,5 +1,6 @@
 const ViewTypes = {
     UIButton: 'UIButton',
+    UIButtonLabel: 'UIButtonLabel',
     UILabel: 'UILabel',
     UILayoutContainerView: 'UILayoutContainerView',
     UINavigationTransitionView: 'UINavigationTransitionView',

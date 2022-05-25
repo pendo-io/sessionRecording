@@ -7,7 +7,6 @@ class Label extends BaseElement {
   createElement() {
       this.element = document.createElement('span');
       super.createElement();
-      // this.element.style.display = 'flex';
       this.element.style.flex = '1';
       this.element.style.backgroundColor = null;
   }
