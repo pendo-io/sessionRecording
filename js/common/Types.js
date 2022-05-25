@@ -7,3 +7,4 @@ const ViewTypes = {
     UIView: 'UIView',
 }
 
+const ViewTypesToIgnore = ["_UIBackButtonMaskView","_UISystemBackgroundView", "_UIBarBackgroundShadowContentImageView" ];

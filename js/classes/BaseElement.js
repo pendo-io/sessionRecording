@@ -5,12 +5,16 @@ class BaseElement {
     }
 
     createElement() {
+        this.element.id = this.json.type;
         this.addPosition();
         this.addFont();
         this.addMargin();
         this.addPadding();
         this.addBorder();
         this.addBackground();
+        if (this.json.text){
+            this.element.innerText = this.json.text;
+        }
         return this.element;
     }
 
@@ -26,20 +30,18 @@ class BaseElement {
         this.element.style.color = "#" + this.json.fontColor;
         this.element.style.fontSize = this.json.fontSize + 'px';
         this.element.style.fontWeight = this.json.fontWeight || 'normal';
-        // this.element.style.justifyContent = this.json.alignment && this.json.alignment !== 'natural' ? this.json.alignment : 'center';
-        // this.element.style.alignItems = this.json.alignment && this.json.alignment !== 'natural' ? this.json.alignment : 'center';
+        this.element.style.justifyContent = this.json.alignment && this.json.alignment !== 'natural' ? this.json.alignment : 'center';
+        this.element.style.alignItems = this.json.alignment && this.json.alignment !== 'natural' ? this.json.alignment : 'center';
     }
 
     addPosition() {
         if (this.json.frame) {
-            console.warn(this.json.frame);
             this.element.style.position = 'absolute';
             this.element.style.top = Math.trunc(this.json.frame.y) + 'px';
             this.element.style.left = Math.trunc(this.json.frame.x) + 'px';
             this.element.style.width = Math.trunc(this.json.frame.width) + 'px';
             this.element.style.height = Math.trunc(this.json.frame.height) + 'px';
 
-            console.warn('style: ' + this.element.style.top);
         }
     }
 

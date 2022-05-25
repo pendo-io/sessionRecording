@@ -19,7 +19,7 @@ const createMainContent = () => {
         container.appendChild(mainContent);
 
         //PARSE AND BUILD
-        parseAndBuild(json, mainContent)
+        parseAndBuild(json1, mainContent)
     }
 }
 

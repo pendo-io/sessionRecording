@@ -16,18 +16,17 @@ const createLabel = (lbl) => {
     return label.getElement();
 }
 
-const parseAndBuild = (viewsArray, container) => {
+const parseAndBuild = (viewsArray, container, zIndex = 900) => {
     if (viewsArray == null || viewsArray.length === 0) {
         return;
     } else {
         viewsArray.forEach(view => {
             delete view.superClass;
-            console.warn(view.type);
             // do something with element
             // types that need special handling
             // types that should be ignored
             // types that require merging
-            if (view.type.startsWith('_')) {
+            if (ViewTypesToIgnore.includes(view.type)) {
                 // parseAndBuild(view.views, container, zIndex);
             } else if (view.frame && view.frame.width === 0 || view.frame.height === 0) {
                 parseAndBuild(view.views, container);
@@ -48,17 +47,18 @@ const parseAndBuild = (viewsArray, container) => {
                         child = createView(view);
                         break;
                 }
-                // child.style.zIndex = zIndex;
-                container.appendChild(child);
+                child.style.zIndex = zIndex++;
+                // container.appendChild(child);
+                let newContainer = null;
                 if (view.type === ViewTypes.UIButton) {
-                    console.warn(child.type);
-                    console.warn(child);
-                    container = child;//UIButton.
+                    // container = child; //UIButton.
+                    newContainer = child;
                 } else {
-                    container = mainContent;
+                    newContainer = mainContent;
                 }
+                container.appendChild(child);
 
-                parseAndBuild(view.views, container);
+                parseAndBuild(view.views, newContainer, zIndex);
             }
         });
     }
