@@ -1,5 +1,5 @@
-import BaseElement from "./BaseElement";
-export class Button extends BaseElement {
+// import BaseElement from "./BaseElement";
+class Button extends BaseElement {
   constructor(json) {
       super(json);
   }

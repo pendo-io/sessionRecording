@@ -1,4 +1,4 @@
-export default json = [{
+const json = [{
   "superClass": "NSObject",
   "margin": "{ top: 47.000000, left: 16.000000, bottom: 34.000000 , right: 16.000000 }",
   "frame": "{ x: 0.000000, y: 0.000000, width: 390.000000 , height: 844.000000 }",

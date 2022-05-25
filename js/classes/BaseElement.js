@@ -1,4 +1,4 @@
-export class BaseElement {
+class BaseElement {
   constructor(json) {
       this.json = json;
       this.element = null;
