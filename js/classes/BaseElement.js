@@ -26,8 +26,8 @@ class BaseElement {
         this.element.style.color = "#" + this.json.fontColor;
         this.element.style.fontSize = this.json.fontSize + 'px';
         this.element.style.fontWeight = this.json.fontWeight || 'normal';
-        this.element.style.justifyContent = this.json.alignment && this.json.alignment !== 'natural' ? this.json.alignment : 'center';
-        this.element.style.alignItems = this.json.alignment && this.json.alignment !== 'natural' ? this.json.alignment : 'center';
+        // this.element.style.justifyContent = this.json.alignment && this.json.alignment !== 'natural' ? this.json.alignment : 'center';
+        // this.element.style.alignItems = this.json.alignment && this.json.alignment !== 'natural' ? this.json.alignment : 'center';
     }
 
     addPosition() {
@@ -65,6 +65,7 @@ class BaseElement {
         if (this.json.borderWidth && this.json.borderWidth > 0) {
             this.element.style.borderWidth = this.json.borderWidth  + 'px';
             this.element.style.borderColor = "#" + (this.json.borderColor || "000000");
+            this.element.style.borderStyle = "solid";
         }
         if(this.json.cornerRadius && this.json.cornerRadius > 0) {
             this.element.style.borderRadius = this.json.cornerRadius + 'px';

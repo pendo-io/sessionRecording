@@ -6,10 +6,12 @@ class Label extends BaseElement {
 
   createElement() {
       this.element = document.createElement('span');
-      this.element.style.display = 'flex';
+      super.createElement();
+      // this.element.style.display = 'inline';
       if(this.json.text) {
           this.element.innerText = this.json.text;
       }
-      return super.createElement();
+      this.element.style.backgroundColor = null;
+
   }
 }

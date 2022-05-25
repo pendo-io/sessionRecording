@@ -16,7 +16,7 @@ const createLabel = (lbl) => {
     return label.getElement();
 }
 
-const parseAndBuild = (viewsArray, container, zIndex) => {
+const parseAndBuild = (viewsArray, container) => {
     if (viewsArray == null || viewsArray.length === 0) {
         return;
     } else {
@@ -28,9 +28,9 @@ const parseAndBuild = (viewsArray, container, zIndex) => {
             // types that should be ignored
             // types that require merging
             if (view.type.startsWith('_')) {
-                parseAndBuild(view.views, container, zIndex);
-            } else if(view.frame && view.frame.width === 0 || view.frame.height === 0) {
-                parseAndBuild(view.views, container, zIndex);
+                // parseAndBuild(view.views, container, zIndex);
+            } else if (view.frame && view.frame.width === 0 || view.frame.height === 0) {
+                parseAndBuild(view.views, container);
             } else {
                 let child;
                 switch (view.type) {
@@ -48,9 +48,17 @@ const parseAndBuild = (viewsArray, container, zIndex) => {
                         child = createView(view);
                         break;
                 }
-                child.style.zIndex = zIndex;
+                // child.style.zIndex = zIndex;
                 container.appendChild(child);
-                parseAndBuild(view.views, child, --zIndex);
+                if (view.type === ViewTypes.UIButton) {
+                    console.warn(child.type);
+                    console.warn(child);
+                    container = child;//UIButton.
+                } else {
+                    container = mainContent;
+                }
+
+                parseAndBuild(view.views, container);
             }
         });
     }

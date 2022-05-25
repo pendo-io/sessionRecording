@@ -11,7 +11,7 @@ const createMainContent = () => {
         //Main container
         mainContent = document.createElement('div');
         mainContent.style.position = 'absolute';
-        mainContent.style.border = 'solid 1px black';
+        mainContent.style.overflow = 'hidden';
         mainContent.style.width = '390px';
         mainContent.style.height = '844px';
         mainContent.style.top = '75px';
@@ -19,7 +19,7 @@ const createMainContent = () => {
         container.appendChild(mainContent);
 
         //PARSE AND BUILD
-        parseAndBuild(json, mainContent, 999)
+        parseAndBuild(json, mainContent)
     }
 }
 

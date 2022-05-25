@@ -15,7 +15,6 @@ const json = [{
     "borderWidth": 0,
     "borderColor": "000000",
     "cornerRadius": 0,
-    "bgColor": "000000",
     "type": "UILayoutContainerView",
     "views": [
         {
@@ -35,7 +34,6 @@ const json = [{
             "borderWidth": 0,
             "borderColor": "000000",
             "cornerRadius": 0,
-            "bgColor": "000000",
             "type": "UINavigationTransitionView",
             "views": [
                 {
@@ -55,7 +53,6 @@ const json = [{
                     "borderWidth": 0,
                     "borderColor": "000000",
                     "cornerRadius": 0,
-                    "bgColor": "000000",
                     "type": "UIViewControllerWrapperView",
                     "views": [
                         {
@@ -87,7 +84,6 @@ const json = [{
                                         "width": 302,
                                         "height": 75
                                     },
-                                    "bgColor": "000000",
                                     "type": "UILabel",
                                     "margin": {
                                         "right": 8,
@@ -136,15 +132,14 @@ const json = [{
                                                 "bottom": 8
                                             },
                                             "frame": {
-                                                "y": 470,
-                                                "x": 92,
+                                                "y": 0,
+                                                "x": 0,
                                                 "width": 243,
                                                 "height": 130
                                             },
                                             "borderWidth": 0,
                                             "borderColor": "000000",
                                             "cornerRadius": 0,
-                                            "bgColor": "000000",
                                             "type": "_UISystemBackgroundView",
                                             "views": [
                                                 {
@@ -156,8 +151,8 @@ const json = [{
                                                         "bottom": 8
                                                     },
                                                     "frame": {
-                                                        "y": 470,
-                                                        "x": 92,
+                                                        "y": 0,
+                                                        "x": 0,
                                                         "width": 243,
                                                         "height": 130
                                                     },
@@ -174,8 +169,8 @@ const json = [{
                                             "superClass": "NSObject",
                                             "borderColor": "000000",
                                             "frame": {
-                                                "y": 525,
-                                                "x": 160,
+                                                "y": 55,
+                                                "x": 68,
                                                 "width": 107,
                                                 "height": 21
                                             },
@@ -221,7 +216,6 @@ const json = [{
             "borderWidth": 0,
             "borderColor": "000000",
             "cornerRadius": 0,
-            "bgColor": "000000",
             "type": "UINavigationBar",
             "views": [
                 {
@@ -233,7 +227,7 @@ const json = [{
                         "bottom": 8
                     },
                     "frame": {
-                        "y": 0,
+                        "y": -47,
                         "x": 0,
                         "width": 390,
                         "height": 91
@@ -241,7 +235,6 @@ const json = [{
                     "borderWidth": 0,
                     "borderColor": "000000",
                     "cornerRadius": 0,
-                    "bgColor": "000000",
                     "type": "_UIBarBackground",
                     "views": [
                         {
@@ -261,7 +254,6 @@ const json = [{
                             "borderWidth": 0,
                             "borderColor": "000000",
                             "cornerRadius": 0,
-                            "bgColor": "000000",
                             "type": "UIVisualEffectView",
                             "views": [
                                 {
@@ -281,7 +273,6 @@ const json = [{
                                     "borderWidth": 0,
                                     "borderColor": "000000",
                                     "cornerRadius": 0,
-                                    "bgColor": "000000",
                                     "type": "_UIVisualEffectBackdropView",
                                     "views": []
                                 }
@@ -304,7 +295,6 @@ const json = [{
                             "borderWidth": 0,
                             "borderColor": "000000",
                             "cornerRadius": 0,
-                            "bgColor": "000000",
                             "type": "_UIBarBackgroundShadowView",
                             "views": [
                                 {
@@ -316,7 +306,7 @@ const json = [{
                                         "bottom": 8
                                     },
                                     "frame": {
-                                        "y": 91,
+                                        "y": 0,
                                         "x": 0,
                                         "width": 390,
                                         "height": 1
@@ -341,7 +331,7 @@ const json = [{
                         "bottom": 0
                     },
                     "frame": {
-                        "y": 47,
+                        "y": 0,
                         "x": 0,
                         "width": 390,
                         "height": 44
@@ -349,7 +339,6 @@ const json = [{
                     "borderWidth": 0,
                     "borderColor": "000000",
                     "cornerRadius": 0,
-                    "bgColor": "000000",
                     "type": "_UINavigationBarContentView",
                     "views": []
                 },
@@ -362,7 +351,7 @@ const json = [{
                         "bottom": 8
                     },
                     "frame": {
-                        "y": 47,
+                        "y": 0,
                         "x": 0,
                         "width": 0,
                         "height": 0
@@ -370,7 +359,6 @@ const json = [{
                     "borderWidth": 0,
                     "borderColor": "000000",
                     "cornerRadius": 0,
-                    "bgColor": "000000",
                     "type": "UIView",
                     "views": []
                 }

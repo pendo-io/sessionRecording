@@ -5,7 +5,7 @@ class View extends BaseElement {
 
     createElement() {
         this.element = document.createElement('div');
-        this.element.style.display = 'flex'
+        // this.element.style.display = 'block'
         return super.createElement();
     }
 }
