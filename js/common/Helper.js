@@ -22,6 +22,12 @@ const createImage = (img) => {
     return image.getElement();
 }
 
+const createTextField = (tf) => {
+    const textField = new TextField(tf);
+    textField.createElement();
+    return textField.getElement();
+}
+
 const play = async (eventsArray) => {
     if (eventsArray == null || eventsArray.length === 0) {
         return;
@@ -31,8 +37,8 @@ const play = async (eventsArray) => {
     const startTime = eventsArray[0].device_time;
     for (const event of eventsArray) {
         let time = Math.trunc((event.device_time - startTime) / 1000);
-        if(time > 10) {
-            time /= 10;
+        if(time > 10 || time < 0) {
+            time = 2;
         }
         console.warn('waiting for ' + time + ' seconds');
         await sleep(time * 1000);
@@ -85,11 +91,9 @@ const drawScreen = (viewsArray, container, zIndex = 900) => {
     console.warn('drawScreen ' + viewsArray);
     viewsArray.forEach(view => {
         delete view.superClass;
-        // do something with element
-        // types that need special handling
-        // types that should be ignored
-        // types that require merging
-        if (ViewTypesToIgnore.includes(view.type)) {
+        if(view.bgColor && view.bgColor.length === 8 && view.bgColor.endsWith('00')) {
+            console.warn('opacity ignore')
+        } else if (ViewTypesToIgnore.includes(view.type)) {
              // drawScreen(view.views, container, zIndex);
         } else {
             let child;
@@ -103,6 +107,9 @@ const drawScreen = (viewsArray, container, zIndex = 900) => {
                     break;
                 case ViewTypes.UIImageView:
                     child = createImage(view);
+                    break;
+                case ViewTypes.UITextField:
+                    child = createTextField(view);
                     break;
                 case ViewTypes.UIViewControllerWrapperView:
                 case ViewTypes.UILayoutContainerView:
