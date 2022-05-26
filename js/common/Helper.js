@@ -26,11 +26,10 @@ const play = async (eventsArray) => {
     if (eventsArray == null || eventsArray.length === 0) {
         return;
     }
-
     const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
     const startTime = eventsArray[0].device_time;
     for (const event of eventsArray) {
-        let time = Math.trunc((event.device_time - startTime) / 1000);
+        let time = Math.trunc((event.device_time - startTime) / 3000);
         await sleep(time);
         if (event.event === 'RAScreenView') {
             let screenEvent = event.data.retroactiveScreenData.sessionRecording;
@@ -38,21 +37,23 @@ const play = async (eventsArray) => {
             drawScreen([screenEvent], mainContent);
         } else if(event.event === 'RAClick') {
             let clickEvent = event.data.sessionRecording;
-            drawClick(clickEvent);
+            if (clickEvent) {
+            drawClick(clickEvent, mainContent);
+            }
         }
     }
 }
 
-const drawClick = (clickData) => {
-
-    // const animateScaling = anime({
-    //     targets: '.square',
-    //     scale: 0.8,
-    // });
-
-    let clickPosition = clickData.position;
-
-    console.warn(clickPosition);
+const drawClick = async (clickEvent, container) => {
+    setTimeout(() => {
+        const clickCircle = document.createElement('div');
+        clickCircle.className = 'circle'
+        clickCircle.style.position = 'absolute';
+        clickCircle.style.zIndex = 99999999
+        clickCircle.style.top = Math.trunc(clickEvent.position.y * 0.73) + 'px'; 
+        clickCircle.style.left = Math.trunc(clickEvent.position.x * 0.73) + 'px';
+        container.appendChild(clickCircle);
+    }, 900);
 };
 
 const clearScreen = () => {

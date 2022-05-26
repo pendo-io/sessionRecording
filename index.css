@@ -1,0 +1,9 @@
+.circle {
+      background: gold;
+      border-radius: 50%;
+      width: 50px;
+      border: 1px solid gold;
+      height: 50px;
+      opacity: 0.4;
+  }
+   
