@@ -1,9 +1,12 @@
 .circle {
-      background: gold;
+      background: #bbb;
       border-radius: 50%;
-      width: 50px;
+      width: 25px;
       border: 1px solid gold;
-      height: 50px;
+      height: 25px;
+      position: absolute;
+      display: inline-block;
       opacity: 0.4;
+      z-index: 9999999;
   }
    

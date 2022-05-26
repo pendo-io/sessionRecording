@@ -26,37 +26,55 @@ const play = async (eventsArray) => {
     if (eventsArray == null || eventsArray.length === 0) {
         return;
     }
+
     const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
     const startTime = eventsArray[0].device_time;
     for (const event of eventsArray) {
-        let time = Math.trunc((event.device_time - startTime) / 3000);
-        await sleep(time);
+        let time = Math.trunc((event.device_time - startTime) / 1000);
+        if(time > 10) {
+            time /= 10;
+        }
+        console.warn('waiting for ' + time + ' seconds');
+        await sleep(time * 1000);
         if (event.event === 'RAScreenView') {
             let screenEvent = event.data.retroactiveScreenData.sessionRecording;
+            //Animations instead
             clearScreen();
             drawScreen([screenEvent], mainContent);
         } else if(event.event === 'RAClick') {
             let clickEvent = event.data.sessionRecording;
-            if (clickEvent) {
-            drawClick(clickEvent, mainContent);
-            }
+            drawClick(clickEvent);
         }
     }
 }
 
-const drawClick = async (clickEvent, container) => {
+const drawClick = (clickData) => {
+    let clickPosition = clickData.clickLocation;
+    if(clickPosition == null) {
+        console.warn('no click location');
+        return;
+    }
+    console.warn('drawClick ' + JSON.stringify(clickPosition));
+    let posX = Math.trunc(clickPosition.x * sizeFactor);
+    let posY = Math.trunc(clickPosition.y * sizeFactor);
+
+    let dot = document.getElementById('dot');
+    if(dot == null) {
+        dot = document.createElement("span");
+        dot.id = 'dot';
+        dot.className = 'circle'
+        mainContent.appendChild(dot);
+    }
+    dot.style.visibility = 'visible';
+    dot.style.top = posY + "px";
+    dot.style.left = posX + "px";
     setTimeout(() => {
-        const clickCircle = document.createElement('div');
-        clickCircle.className = 'circle'
-        clickCircle.style.position = 'absolute';
-        clickCircle.style.zIndex = 99999999
-        clickCircle.style.top = Math.trunc(clickEvent.position.y * 0.73) + 'px'; 
-        clickCircle.style.left = Math.trunc(clickEvent.position.x * 0.73) + 'px';
-        container.appendChild(clickCircle);
-    }, 900);
+        dot.style.visibility = 'hidden';
+    }, 1000)
 };
 
 const clearScreen = () => {
+    console.warn('clearScreen');
     mainContent.innerHTML = '';
 }
 
@@ -64,6 +82,7 @@ const drawScreen = (viewsArray, container, zIndex = 900) => {
     if (viewsArray == null || viewsArray.length === 0) {
         return;
     }
+    console.warn('drawScreen ' + viewsArray);
     viewsArray.forEach(view => {
         delete view.superClass;
         // do something with element
@@ -71,7 +90,7 @@ const drawScreen = (viewsArray, container, zIndex = 900) => {
         // types that should be ignored
         // types that require merging
         if (ViewTypesToIgnore.includes(view.type)) {
-            // parseAndBuild(view.views, container, zIndex);
+             // drawScreen(view.views, container, zIndex);
         } else {
             let child;
             switch (view.type) {
