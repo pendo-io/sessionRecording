@@ -91,9 +91,7 @@ const drawScreen = (viewsArray, container, zIndex = 900) => {
     console.warn('drawScreen ' + viewsArray);
     viewsArray.forEach(view => {
         delete view.superClass;
-        if(view.bgColor && view.bgColor.length === 8 && view.bgColor.endsWith('00')) {
-            console.warn('opacity ignore')
-        } else if (ViewTypesToIgnore.includes(view.type)) {
+        if (ViewTypesToIgnore.includes(view.type)) {
              // drawScreen(view.views, container, zIndex);
         } else {
             let child;
