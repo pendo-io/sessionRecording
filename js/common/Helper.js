@@ -28,23 +28,27 @@ const createTextField = (tf) => {
     return textField.getElement();
 }
 
+const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
+
 const play = async (eventsArray) => {
     if (eventsArray == null || eventsArray.length === 0) {
         return;
     }
-
-    const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
-    const startTime = eventsArray[0].device_time;
+    const startTime = eventsArray[0].device_time ;
     for (const event of eventsArray) {
+        if (event.event === 'RAScreenLeft') {
+            continue;
+        }
         let time = Math.trunc((event.device_time - startTime) / 1000);
         if(time > 10 || time < 0) {
             time = 2;
         }
         console.warn('waiting for ' + time + ' seconds');
-        await sleep(time * 1000);
+        await sleep(time * 300);
         if (event.event === 'RAScreenView') {
             let screenEvent = event.data.retroactiveScreenData.sessionRecording;
             //Animations instead
+
             clearScreen();
             drawScreen([screenEvent], mainContent);
         } else if(event.event === 'RAClick') {
@@ -74,10 +78,15 @@ const drawClick = (clickData) => {
     dot.style.visibility = 'visible';
     dot.style.top = posY + "px";
     dot.style.left = posX + "px";
-    setTimeout(() => {
-        dot.style.visibility = 'hidden';
-    }, 1000)
 };
+
+const clearClick = () => {
+    let dot = document.getElementById('dot');
+    if(dot == null) {
+        return;
+    }
+    dot.style.visibility = 'hidden';
+}
 
 const clearScreen = () => {
     console.warn('clearScreen');

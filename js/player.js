@@ -1,6 +1,6 @@
 let mainContent;
 let sizeFactor = 1;
-const createMainContent = () => {
+const createMainContent = async () => {
     const container = document.getElementById('container');
     if (container !== null) {
         container.style.backgroundImage = './images/phone.svg';
@@ -22,7 +22,9 @@ const createMainContent = () => {
         container.appendChild(mainContent);
 
         //PARSE AND BUILD
-        play(eventsData);
+        await play(eventsData);
+        await sleep(2000);
+        await play(piiData);
         // parseAndBuild(json1, mainContent)
     }
 }
